@@ -5,7 +5,7 @@ function App() {
   const [text, setText] = useState('');
   const [check,setCheck] = useState(false);
   const calculate = (text) => {
-    const validRegex = new RegExp('^(?=.*?[0-9]).{6,}$');
+    const validRegex = new RegExp('^([0-9])');
 
     if(validRegex.test(text)){
       setCheck(true)

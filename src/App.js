@@ -1,30 +1,29 @@
-import { useState,useMemo } from "react";
+import { useState, useMemo } from "react";
 import "./App.css";
 
 function App() {
-  const [text,setText] = useState('');
-
+  const [text, setText] = useState("");
   const calculate = () => {
-    if(text){
-      return true
+    if (text) {
+      return true;
     }
     return false;
-  }
-  const memoCalculate = useMemo(() => calculate(),[calculate])
+  };
+
+  const memoCalculate = useMemo(() => calculate(), [calculate]);
   return (
     <div className="App">
-     <div className="control has-icons-right">
+      <div className="control has-icons-right">
         <input
           className="input is-large"
           type="text"
           placeholder="Enter number..."
-          onChange={(e) =>setText(e.target.value) }
+          onChange={(e) => setText(e.target.value)}
           value={text}
-
         />
         <span className="icon is-small is-right">
-          <i className={`${text ? 'fa-check': 'fas fa-times'}`} />
-        </span> 
+          <i className={`${memoCalculate ? "fas fa-check" : "fas fa-times"}`} />
+        </span>
       </div>
     </div>
   );

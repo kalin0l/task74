@@ -8,12 +8,15 @@ function App() {
 
   const memoCalculate = useMemo(
     () =>
-      function () {
-        const validRegex = new RegExp(/^[0-9\b]+$/);
-        if (validRegex.test(text)) {
+      function (e) {
+        const validRegex = new RegExp('^[0-9]');
+        setText(e.target.value)
+        if (!validRegex.test(text)) {
+          return false;
+        } else {
+
           return true;
         }
-        return false;
       },
     [text]
   );
@@ -24,10 +27,11 @@ function App() {
           className="input is-large"
           type="text"
           placeholder="Enter number..."
-          onChange={(e) => setText(e.target.value)}
+          onChange={memoCalculate}
           value={text}
         />
         <span className="icon is-small is-right">
+          
           <i className={`${text ? "fas fa-check" : "fas fa-times"}`} />
         </span>
       </div>

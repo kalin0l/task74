@@ -28,7 +28,7 @@ function App() {
           value={text}
         />
         <span className="icon is-small is-right">
-          <i className={`${memoCalculate ? "fas fa-check" : "fas fa-times"}`} />
+          <i className={`${text ? "fas fa-check" : "fas fa-times"}`} />
         </span>
       </div>
     </div>

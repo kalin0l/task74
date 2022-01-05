@@ -2,20 +2,19 @@ import { useState, useMemo } from "react";
 import "./App.css";
 
 function App() {
-  const [text, setText] = useState("");
+  const [text, setText] = useState(0);
   
   
 
   const memoCalculate = useMemo(
     () =>
       function (e) {
-        const validRegex = new RegExp('^[0-9]');
         setText(e.target.value)
-        if (!validRegex.test(text)) {
-          return false;
+        if (text < 5) {
+          return true;
         } else {
 
-          return true;
+          return false;
         }
       },
     [text]
@@ -32,7 +31,7 @@ function App() {
         />
         <span className="icon is-small is-right">
           
-          <i className={`${text ? "fas fa-check" : "fas fa-times"}`} />
+          <i className={`${text < 5 ? "fas fa-check" : "fas fa-times"}`} />
         </span>
       </div>
     </div>

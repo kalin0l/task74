@@ -2,22 +2,23 @@ import { useState, useMemo } from "react";
 import "./App.css";
 
 function App() {
-  const [text, setText] = useState(0);
+  const [text, setText] = useState('');
+  const [check,setCheck] = useState(false);
+  const calculate = (text) => {
+    const validRegex = new RegExp('^(?=.*?[0-9]).{6,}$');
+
+    if(validRegex.test(text)){
+      setCheck(true)
+    } else {
+      setCheck(false);
+    }
+
+    }
+
   
   
 
-  const memoCalculate = useMemo(
-    () =>
-      function (e) {
-        setText(e.target.value)
-        if (text < 5) {
-          return true;
-        } else {
-
-          return false;
-        }
-      },
-    [text]
+  const memoCalculate = useMemo(() => calculate(text),[text]
   );
   return (
     <div className="App">
@@ -26,12 +27,12 @@ function App() {
           className="input is-large"
           type="text"
           placeholder="Enter number..."
-          onChange={memoCalculate}
+          onChange={(e) => setText(e.target.value)}
           value={text}
         />
         <span className="icon is-small is-right">
           
-          <i className={`${text < 5 ? "fas fa-check" : "fas fa-times"}`} />
+          <i className={`${check ? "fas fa-check" : "fas fa-times"}`} />
         </span>
       </div>
     </div>

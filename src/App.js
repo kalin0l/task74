@@ -3,8 +3,9 @@ import "./App.css";
 
 function App() {
   const [text, setText] = useState("");
+  const validRegex = new RegExp(/^[0-9\b]+$/);
   const calculate = () => {
-    if (text) {
+    if (validRegex.test(text)) {
       return true;
     }
     return false;

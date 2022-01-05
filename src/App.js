@@ -3,15 +3,20 @@ import "./App.css";
 
 function App() {
   const [text, setText] = useState("");
-  const validRegex = new RegExp(/^[0-9\b]+$/);
-  const calculate = () => {
-    if (validRegex.test(text)) {
-      return true;
-    }
-    return false;
-  };
+  
+  
 
-  const memoCalculate = useMemo(() => calculate(), [calculate]);
+  const memoCalculate = useMemo(
+    () =>
+      function () {
+        const validRegex = new RegExp(/^[0-9\b]+$/);
+        if (validRegex.test(text)) {
+          return true;
+        }
+        return false;
+      },
+    [text]
+  );
   return (
     <div className="App">
       <div className="control has-icons-right">

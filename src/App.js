@@ -19,7 +19,7 @@ function App() {
     // }
   },[]);
 
-  const memoCalculate = useMemo(() => calculate(text), [calculate,text]);
+  const memoCalculate = useMemo(() => calculate(text), [text]);
   useEffect(() => {
     console.log(memoCalculate);
     // console.log(check);

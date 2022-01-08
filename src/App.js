@@ -9,7 +9,7 @@ function App() {
     const validRegex = new RegExp(/[1-9]/);
     console.log(text);
 
-    if (validRegex.test(text) > 0 && text < 10) {
+    if (validRegex.test(+text) && +text < 10) {
       setCheck(true);
     } else {
       setCheck(false);

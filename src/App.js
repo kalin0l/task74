@@ -2,15 +2,14 @@ import { useState, useMemo, useEffect, useCallback } from "react";
 import "./App.css";
 
 function App() {
-  const [text, setText] = useState("");
+  const [text, setText] = useState(0);
   // const [check, setCheck] = useState(false);
 
   const calculate = useCallback((text) => {
-    const validRegex = new RegExp(/[2-9]/);
-    console.log(text);
-    console.log("factorialOf(n) called!");
+    const validRegex = new RegExp(/[1-9]/);
+    
     if(validRegex.test(text) && text < 10){
-      return text <= 0 ? 1 : text;
+      return text < 1 ? 1 : text;
     } 
     // if (validRegex.test(+text) && +text < 10) {
     //   setCheck(true);
@@ -21,9 +20,8 @@ function App() {
 
   const memoCalculate = useMemo(() => calculate(text), [text]);
   useEffect(() => {
-    console.log(memoCalculate);
-    // console.log(check);
-  }, [memoCalculate]);
+    console.log(memoCalculate,text);
+  }, [memoCalculate,text]);
   return (
     <div className="App">
       <div className="control has-icons-right">

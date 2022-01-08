@@ -1,22 +1,25 @@
-import { useState, useMemo, useEffect, useCallback } from "react";
+import { useState, useMemo, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const [text, setText] = useState(0);
+  const [text, setText] = useState('');
   // const [check, setCheck] = useState(false);
 
-  const calculate = useCallback((text) => {
+  const calculate = (text) => {
     const validRegex = new RegExp(/[1-9]/);
     
     if(validRegex.test(text) && text < 10){
       return text < 1 ? 1 : text;
-    } 
+    } else {
+      return false;
+    }
+
     // if (validRegex.test(+text) && +text < 10) {
     //   setCheck(true);
     // } else {
     //   setCheck(false);
     // }
-  },[]);
+  };
 
   const memoCalculate = useMemo(() => calculate(text), [text]);
   useEffect(() => {

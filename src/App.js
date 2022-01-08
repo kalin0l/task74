@@ -1,26 +1,29 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import "./App.css";
 
 function App() {
   const [text, setText] = useState("");
-  const [check, setCheck] = useState(false);
+  // const [check, setCheck] = useState(false);
 
-  const calculate = (text) => {
-    const validRegex = new RegExp(/[1-9]/);
+  const calculate = useCallback((text) => {
+    const validRegex = new RegExp(/[2-9]/);
     console.log(text);
+    console.log("factorialOf(n) called!");
+    if(validRegex.test(text) && text < 10){
+      return text <= 0 ? 1 : text;
+    } 
+    // if (validRegex.test(+text) && +text < 10) {
+    //   setCheck(true);
+    // } else {
+    //   setCheck(false);
+    // }
+  },[]);
 
-    if (validRegex.test(+text) && +text < 10) {
-      setCheck(true);
-    } else {
-      setCheck(false);
-    }
-  };
-
-  const memoCalculate = useMemo(() => calculate(text), [text]);
+  const memoCalculate = useMemo(() => calculate(text), [calculate,text]);
   useEffect(() => {
     console.log(memoCalculate);
-    console.log(check);
-  }, [memoCalculate, check]);
+    // console.log(check);
+  }, [memoCalculate]);
   return (
     <div className="App">
       <div className="control has-icons-right">
@@ -32,8 +35,7 @@ function App() {
           value={text}
         />
         <span className="icon is-small is-right">
-          {memoCalculate}
-          <i className={`${check ? "fas fa-check" : "fas fa-times"}`} />
+          <i className={`${memoCalculate ? "fas fa-check" : "fas fa-times"}`} />
         </span>
       </div>
     </div>

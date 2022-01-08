@@ -9,7 +9,7 @@ function App() {
     const validRegex = new RegExp(/[1-9]/);
     console.log(text);
 
-    if (validRegex.test(+text) > 0 && +text < 10) {
+    if (validRegex.test(text) > 0 && text < 10) {
       setCheck(true);
     } else {
       setCheck(false);
@@ -28,7 +28,7 @@ function App() {
           className="input is-large"
           type="text"
           placeholder="Enter number..."
-          onChange={(e) => setText(Number(e.target.value))}
+          onChange={(e) => setText(e.target.value)}
           value={text}
         />
         <span className="icon is-small is-right">

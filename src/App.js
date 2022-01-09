@@ -3,24 +3,22 @@ import "./App.css";
 
 function App() {
   const [text, setText] = useState('');
-  const [validate,setValidate] = useState(false);
+  // const [validate,setValidate] = useState(false);
 
   const calculate = (text) => {
     const validRegex = new RegExp(/[1-9]/);
     
     if(validRegex.test(text) && text < 10){
-      setValidate(true);
-      return text < 1 ? 1 : text;
+      // setValidate(true);
+      return true;
     } else {
-      setValidate(false);
+      // setValidate(false);
       return false;
     }
   };
   const onChange = (e) => {
     setText(e.target.value);
-    setValidate(calculate(e.target.value));
-
-
+    // setValidate(calculate(e.target.value));
   }
 
   const memoCalculate = useMemo(() => calculate(text), [text]);

@@ -23,7 +23,7 @@ function App() {
 
   const memoCalculate = useMemo(() => calculate(text), [text]);
   useEffect(() => {
-    console.log(memoCalculate,text);
+    console.log(memoCalculate,text.length);
   }, [memoCalculate,text]);
   return (
     <div className="App">
@@ -36,7 +36,7 @@ function App() {
           value={text}
         />
         <span className="icon is-small is-right">
-          <i className={`${memoCalculate ? "fas fa-check" : "fas fa-times"}`} />
+          <i className={`${memoCalculate ? "fa-check" : "fas fa-times"}`} />
         </span>
       </div>
     </div>

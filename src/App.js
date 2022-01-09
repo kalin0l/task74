@@ -3,25 +3,25 @@ import "./App.css";
 
 function App() {
   const [text, setText] = useState('');
-  const [check, setCheck] = useState(false);
+  const [validate,setValidate] = useState(false);
 
   const calculate = (text) => {
     const validRegex = new RegExp(/[1-9]/);
     
     if(validRegex.test(text) && text < 10){
-      setCheck(true)
+      setValidate(true);
       return text < 1 ? 1 : text;
     } else {
-      setCheck(false)
+      setValidate(false);
       return false;
     }
-
-    // if (validRegex.test(+text) && +text < 10) {
-    //   setCheck(true);
-    // } else {
-    //   setCheck(false);
-    // }
   };
+  const onChange = (e) => {
+    setText(e.target.value);
+    setValidate(calculate(e.target.value));
+
+
+  }
 
   const memoCalculate = useMemo(() => calculate(text), [text]);
   useEffect(() => {
@@ -34,11 +34,11 @@ function App() {
           className="input is-large"
           type="text"
           placeholder="Enter number..."
-          onChange={(e) => setText(e.target.value)}
+          onChange={onChange}
           value={text}
         />
         <span className="icon is-small is-right">
-          <i className={`${check ? "fas fa-check" : "fas fa-times"}`} />
+          <i className={`${memoCalculate ? "fas fa-check" : "fas fa-times"}`} />
         </span>
       </div>
     </div>

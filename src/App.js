@@ -2,29 +2,43 @@ import { useState, useMemo, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   // const [validate,setValidate] = useState(false);
 
-  const calculate = (text) => {
-    const validRegex = new RegExp(/[1-9]/);
-    
-    if(validRegex.test(text) && text < 15){
-      // setValidate(true);
-      return true;
-    } else {
-      // setValidate(false);
-      return false;
-    }
-  };
+  // const calculate = () => {
+  //   const validRegex = new RegExp(/[1-9]/);
+
+  //   if (validRegex.test(text) && text < 15) {
+  //     // setValidate(true);
+  //     return true;
+  //   } else {
+  //     // setValidate(false);
+  //     return false;
+  //   }
+  // };
   const onChange = (e) => {
     setText(e.target.value);
     // setValidate(calculate(e.target.value));
-  }
+  };
 
-  const memoCalculate = useMemo(() => calculate(text), [text]);
+  const memoCalculate = useMemo(
+    () =>
+      function () {
+        const validRegex = new RegExp(/[1-9]/);
+
+        if (validRegex.test(text) && text < 15) {
+          // setValidate(true);
+          return true;
+        } else {
+          // setValidate(false);
+          return false;
+        }
+      },
+    [text]
+  );
   useEffect(() => {
-    console.log(memoCalculate,text);
-  }, [memoCalculate,text]);
+    console.log(memoCalculate, text);
+  }, [memoCalculate, text]);
   return (
     <div className="App">
       <div className="control has-icons-right">
@@ -36,7 +50,7 @@ function App() {
           value={text}
         />
         <span className="icon is-small is-right">
-          <i className={`${text ? "fas fa-check" : "fas fa-times"}`} />
+          <i className={`${memoCalculate ? "fas fa-check" : "fas fa-times"}`} />
         </span>
       </div>
     </div>

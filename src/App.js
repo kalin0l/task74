@@ -8,9 +8,12 @@ function App() {
   const calculate = (text) => {
     const validRegex = new RegExp(/[1-9]/);
     
-    if(validRegex.test(text) && text < 15){
+    if(validRegex.test(text)){
+      if(text < 15){
+        return text;
+
+      }
       // setValidate(true);
-      return true;
     } else {
       // setValidate(false);
       return false;

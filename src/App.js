@@ -3,16 +3,16 @@ import "./App.css";
 
 function App() {
   const [text, setText] = useState('');
-  // const [validate,setValidate] = useState(false);
+  const [validate,setValidate] = useState(false);
 
   const calculate = (text) => {
     const validRegex = new RegExp(/[1-9]/);
     
     if(validRegex.test(text) && text < 15){
-      // setValidate(true);
+      setValidate(true);
       return true;
     } else {
-      // setValidate(false);
+      setValidate(false);
       return false;
     }
   };
@@ -36,7 +36,7 @@ function App() {
           value={text}
         />
         <span className="icon is-small is-right">
-          <i className={`${memoCalculate ? "fas fa-check" : "fas fa-times"}`} />
+          <i className={`${validate ? "fas fa-check" : "fas fa-times"}`} />
         </span>
       </div>
     </div>

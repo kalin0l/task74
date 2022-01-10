@@ -2,13 +2,13 @@ import { useState, useMemo, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const [text, setText] = useState('0');
+  const [text, setText] = useState("");
   // const [validate,setValidate] = useState(false);
 
-  const calculate = (sometext) => {
+  const calculate = (text) => {
     const validRegex = new RegExp(/[1-9]/);
     
-    if(validRegex.test(sometext) && sometext < 15){
+    if(validRegex.test(text) && text < 15){
       // setValidate(true);
       return true;
     } else {

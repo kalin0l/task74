@@ -3,7 +3,7 @@ import "./App.css";
 
 function App() {
   const [text, setText] = useState("");
-  // const [validate,setValidate] = useState(false);
+ 
 
   const calculate = (text) => {
     const validRegex = new RegExp(/[1-9]/);
@@ -13,15 +13,15 @@ function App() {
         return text;
 
       }
-      // setValidate(true);
+      
     } else {
-      // setValidate(false);
+      
       return false;
     }
   };
   const onChange = (e) => {
     setText(e.target.value);
-    // setValidate(calculate(e.target.value));
+   
   }
 
   const memoCalculate = useMemo(() => calculate(text), [text]);
